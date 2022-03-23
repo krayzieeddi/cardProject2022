@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import CardType, Card
+from django.urls import reverse_lazy
+from .forms import CardForm
 
 # Create your views here.
 def index(request):
@@ -21,3 +23,15 @@ def getCardDetail(request, id):
         'cardDetails' : cardDetails,
     }
     return render(request, 'card/cardDetail.html', context=context)
+
+def newCard(request):
+     form=CardForm
+     if request.method=='POST':
+          form=CardForm(request.POST)
+          if form.is_valid():
+               post=form.save(commit=True)
+               post.save()
+               form=CardForm()
+     else:
+          form=CardForm()
+     return render(request, 'card/newCard.html', {'form': form})
