@@ -7,4 +7,6 @@ urlpatterns = [
     path('getCard/', views.getCard, name='card'),
     path('getCardDetail/<int:id>', views.getCardDetail, name='cardDetail'),
     path('newCard/', views.newCard, name='newCard'),
+    path('loginMessage/', views.loginMessage, name='loginMessage'),
+    path('logOutMessage/', views.logOutMessage, name='logOutMessage'),
 ]

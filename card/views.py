@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import CardType, Card
 from django.urls import reverse_lazy
 from .forms import CardForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -24,6 +25,7 @@ def getCardDetail(request, id):
     }
     return render(request, 'card/cardDetail.html', context=context)
 
+@login_required
 def newCard(request):
      form=CardForm
      if request.method=='POST':
@@ -35,3 +37,9 @@ def newCard(request):
      else:
           form=CardForm()
      return render(request, 'card/newCard.html', {'form': form})
+
+def loginMessage(request):
+    return render(request, 'card/loginMessage.html')
+
+def logOutMessage(request):
+    return render(request, 'card/logOutMessage.html')
