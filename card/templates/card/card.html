@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Card Types</h1>
+<table class='table'>
+ <tr>
+     <th>Name</th>
+ </tr>
+ {% for t in card_list %}
+
+    <li><a href="{% url 'cardDetail' id=t.id %}">{{ t.cardName }}</a></li>
+   
+
+ {% endfor %}
+
+
+</table>
+
+
+{% endblock %}
